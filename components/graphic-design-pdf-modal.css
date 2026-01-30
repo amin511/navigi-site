@@ -1,0 +1,256 @@
+/* Preview PDF Button */
+.preview-pdf-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    margin-top: 16px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+}
+
+.preview-pdf-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+.preview-icon {
+    width: 16px;
+    height: 16px;
+}
+
+/* PDF Preview Modal */
+.pdf-preview-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.pdf-modal-content {
+    background: white;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 1200px;
+    height: 90vh;
+    max-height: 900px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Modal Header */
+.pdf-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+}
+
+.pdf-modal-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.project-color-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1);
+    }
+}
+
+.pdf-modal-title h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0F0524;
+}
+
+.modal-client {
+    margin: 2px 0 0;
+    font-size: 13px;
+    color: #64748b;
+}
+
+.close-modal-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.05);
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close-modal-btn:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: #0F0524;
+    transform: rotate(90deg);
+}
+
+/* PDF Container */
+.pdf-preview-container {
+    flex: 1;
+    overflow: hidden;
+    background: #f1f5f9;
+    position: relative;
+}
+
+.pdf-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Modal Footer */
+.pdf-modal-footer {
+    display: flex;
+    gap: 12px;
+    padding: 20px 24px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+}
+
+.close-preview-btn,
+.download-pdf-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    text-decoration: none;
+}
+
+.close-preview-btn {
+    background: #8C52FE;
+    color: white;
+}
+
+.close-preview-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+.download-pdf-btn {
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid;
+}
+
+.download-pdf-btn:hover {
+    background: white;
+    transform: translateY(-2px);
+}
+
+.close-icon,
+.download-icon {
+    width: 18px;
+    height: 18px;
+}
+
+/* Desktop/Mobile Close Button Visibility */
+.desktop-close {
+    display: flex;
+}
+
+.mobile-close {
+    display: none;
+}
+
+/* Responsive Modal */
+@media (max-width: 768px) {
+    .pdf-preview-modal {
+        padding: 0;
+    }
+
+    .pdf-modal-content {
+        border-radius: 0;
+        max-width: 100%;
+        height: 100vh;
+        max-height: 100vh;
+    }
+
+    .pdf-modal-header {
+        padding: 16px 20px;
+    }
+
+    .pdf-modal-title h3 {
+        font-size: 16px;
+    }
+
+    .modal-client {
+        font-size: 12px;
+    }
+
+    .desktop-close {
+        display: none;
+    }
+
+    .mobile-close {
+        display: flex;
+    }
+
+    .pdf-modal-footer {
+        padding: 16px 20px;
+        padding-bottom: max(16px, env(safe-area-inset-bottom));
+    }
+
+    .close-preview-btn,
+    .download-pdf-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}

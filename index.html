@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Navigi Agency | Agence Digitale Créative - Web Design, Montage Vidéo, Motion Design, Branding & Publicité</title>
+    <meta name="description" content="Navigi Agency - Agence digitale spécialisée en création de sites web, montage vidéo, motion design, branding, design graphique et publicité Facebook & TikTok Ads. Transformez votre vision en réalité digitale.">
+    <meta name="keywords" content="navigi, navigi agency, agence digitale, création site web, web design, montage vidéo, video editing, motion design, branding, identité visuelle, design graphique, graphic design, facebook ads, tiktok ads, publicité digitale, marketing digital, agence créative, agence web, sponsor ads, réseaux sociaux, social media marketing">
+    <meta name="author" content="Navigi Agency">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="French">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://navigi.agency/">
+    <meta property="og:title" content="Navigi Agency | Agence Digitale Créative">
+    <meta property="og:description" content="Création de sites web, montage vidéo, motion design, branding et publicité digitale. Transformez votre vision en réalité.">
+    <meta property="og:image" content="./LogoIcon.svg">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="ar_AR">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://navigi.agency/">
+    <meta property="twitter:title" content="Navigi Agency | Agence Digitale Créative">
+    <meta property="twitter:description" content="Création de sites web, montage vidéo, motion design, branding et publicité digitale.">
+    <meta property="twitter:image" content="./LogoIcon.svg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://navigi.agency/">
+    
+    <!-- Alternate Languages -->
+    <link rel="alternate" hreflang="fr" href="https://navigi.agency/fr/">
+    <link rel="alternate" hreflang="en" href="https://navigi.agency/en/">
+    <link rel="alternate" hreflang="ar" href="https://navigi.agency/ar/">
+    <link rel="alternate" hreflang="x-default" href="https://navigi.agency/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./LogoIcon.svg">
+    <link rel="apple-touch-icon" href="./LogoIcon.svg">
+    
+    <!-- Preload Fonts -->
+    <link rel="preload" href="./CoreSansC-45Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./CoreSansC-65Bold.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="./style.css">
+    
+    <!-- Structured Data / Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Navigi Agency",
+        "url": "https://navigi.agency",
+        "logo": "https://navigi.agency/LogoIcon.svg",
+        "description": "Agence digitale créative spécialisée en création de sites web, montage vidéo, motion design, branding et publicité digitale",
+        "sameAs": [
+            "https://facebook.com/navigiagency",
+            "https://instagram.com/navigiagency",
+            "https://tiktok.com/@navigiagency",
+            "https://linkedin.com/company/navigiagency"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "availableLanguage": ["French", "English", "Arabic"]
+        },
+        "services": [
+            "Web Design",
+            "Video Editing",
+            "Motion Design",
+            "Branding",
+            "Graphic Design",
+            "Facebook Ads",
+            "TikTok Ads",
+            "Digital Marketing"
+        ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#" class="nav__logo">
+                <img src="./LogoIcon.svg" alt="Navigi Agency Logo" class="nav__logo-icon">
+                <span class="nav__logo-text">navigi</span>
+            </a>
+            
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link active" data-i18n="nav.home">Accueil</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#services" class="nav__link" data-i18n="nav.services">Services</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#portfolio" class="nav__link" data-i18n="nav.portfolio">Portfolio</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#about" class="nav__link" data-i18n="nav.about">À propos</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#contact" class="nav__link" data-i18n="nav.contact">Contact</a>
+                    </li>
+                </ul>
+                
+                <button class="nav__close" id="nav-close">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="nav__actions">
+                <!-- Language Switcher -->
+                <div class="language-switcher">
+                    <button class="language-btn" id="lang-toggle" aria-label="Change language">
+                        <span class="current-lang">FR</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="language-dropdown" id="lang-dropdown">
+                        <button class="lang-option active" data-lang="fr">Français</button>
+                        <button class="lang-option" data-lang="en">English</button>
+                        <button class="lang-option" data-lang="ar">العربية</button>
+                    </div>
+                </div>
+                
+                <a href="#contact" class="btn btn--primary" data-i18n="nav.cta">Démarrer un projet</a>
+                
+                <button class="nav__toggle" id="nav-toggle" aria-label="Toggle menu">
+                    <span class="nav__toggle-line"></span>
+                    <span class="nav__toggle-line"></span>
+                    <span class="nav__toggle-line"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <!-- Grid Background Pattern -->
+            <div class="hero__grid-bg"></div>
+            
+            <!-- Gradient Overlay -->
+            <div class="hero__gradient"></div>
+            
+            <!-- Floating UI Elements -->
+            <div class="hero__floating-elements">
+                <!-- Cursor Arrows -->
+                <div class="hero__cursor hero__cursor--1" data-aos="fade" data-aos-delay="600">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
+                    </svg>
+                </div>
+                <div class="hero__cursor hero__cursor--2" data-aos="fade" data-aos-delay="800">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
+                    </svg>
+                </div>
+                
+                <!-- Tech Icons -->
+                <div class="hero__tech-icon hero__tech-icon--1" data-aos="fade" data-aos-delay="1000">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <circle cx="12" cy="12" r="3"/>
+                        <line x1="12" y1="2" x2="12" y2="6"/>
+                        <line x1="12" y1="18" x2="12" y2="22"/>
+                        <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/>
+                        <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
+                        <line x1="2" y1="12" x2="6" y2="12"/>
+                        <line x1="18" y1="12" x2="22" y2="12"/>
+                        <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/>
+                        <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
+                    </svg>
+                </div>
+                <div class="hero__tech-icon hero__tech-icon--2" data-aos="fade" data-aos-delay="1200">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+                        <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+                        <line x1="6" y1="6" x2="6.01" y2="6"/>
+                        <line x1="6" y1="18" x2="6.01" y2="18"/>
+                    </svg>
+                </div>
+                
+                <!-- Code Symbols -->
+                <div class="hero__code-symbol hero__code-symbol--1" data-aos="fade" data-aos-delay="700">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="16 18 22 12 16 6"/>
+                        <polyline points="8 6 2 12 8 18"/>
+                    </svg>
+                </div>
+                <div class="hero__code-symbol hero__code-symbol--2" data-aos="fade" data-aos-delay="900">
+                    <span>{}</span>
+                </div>
+                
+                <!-- UI Lines -->
+                <div class="hero__ui-line hero__ui-line--1"></div>
+                <div class="hero__ui-line hero__ui-line--2"></div>
+                <div class="hero__ui-line hero__ui-line--3"></div>
+            </div>
+            
+            <div class="hero__container container">
+                <!-- Main Hero Content -->
+                <div class="hero__main">
+                    <!-- Floating Glassmorphism Tags -->
+                    <div class="hero__floating-tag hero__floating-tag--1" data-aos="fade-right" data-aos-delay="300">
+                        <span data-i18n="services.motion">Video Motion</span>
+                    </div>
+                    
+                    <div class="hero__floating-tag hero__floating-tag--2" data-aos="fade-left" data-aos-delay="400">
+                        <span data-i18n="services.webDev">Website Development</span>
+                    </div>
+                    
+                    <div class="hero__floating-tag hero__floating-tag--3" data-aos="fade-right" data-aos-delay="500">
+                        <span data-i18n="services.branding">Branding</span>
+                    </div>
+                    
+                    <div class="hero__floating-tag hero__floating-tag--4" data-aos="fade-left" data-aos-delay="600">
+                        <span data-i18n="services.sponsor">Sponsor</span>
+                    </div>
+                    
+                    <!-- Laptop Mockup -->
+                    <div class="hero__laptop" data-aos="fade-up" data-aos-delay="200">
+                        <div class="hero__laptop-screen">
+                            <div class="hero__laptop-content">
+                                <h1 class="hero__title">
+                                    <span class="hero__title-line" data-i18n="hero.title1">We turn ideas</span>
+                                    <span class="hero__title-line"><span class="hero__title-highlight" data-i18n="hero.title2">into digital reality</span></span>
+                                </h1>
+                            </div>
+                        </div>
+                        <div class="hero__laptop-base">
+                            <div class="hero__laptop-keyboard"></div>
+                        </div>
+                        <div class="hero__laptop-shadow"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="./i18n.js"></script>
+    <script src="./main.js"></script>
+</body>
+</html>

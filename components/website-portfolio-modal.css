@@ -1,0 +1,313 @@
+/* Dual CTA Buttons */
+.cta-buttons {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    margin-top: 24px;
+}
+
+.preview-btn,
+.get-like-this-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: none;
+}
+
+.preview-btn {
+    background: linear-gradient(135deg, #8C52FE 0%, #B794FF 100%);
+    color: white;
+}
+
+.preview-btn:hover {
+    background: linear-gradient(135deg, #7a3fe8 0%, #a67fff 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(140, 82, 254, 0.4);
+}
+
+.get-like-this-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.get-like-this-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+}
+
+.btn-icon {
+    width: 18px;
+    height: 18px;
+}
+
+/* Mobile CTA Buttons */
+.mobile-cta-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+    width: 100%;
+}
+
+.preview-btn-mobile,
+.get-like-this-btn-mobile {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.preview-btn-mobile {
+    background: linear-gradient(135deg, #8C52FE 0%, #B794FF 100%);
+    color: white;
+}
+
+.preview-btn-mobile:hover {
+    background: linear-gradient(135deg, #7a3fe8 0%, #a67fff 100%);
+    transform: scale(1.02);
+}
+
+.get-like-this-btn-mobile {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.get-like-this-btn-mobile:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.02);
+}
+
+/* Preview Modal */
+.preview-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 5, 36, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.preview-modal-container {
+    width: 100%;
+    max-width: 1400px;
+    height: 90vh;
+    background: linear-gradient(135deg, rgba(41, 15, 94, 0.9) 0%, rgba(26, 10, 62, 0.9) 100%);
+    border: 1px solid rgba(140, 82, 254, 0.3);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: slideInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.preview-modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    background: rgba(15, 5, 36, 0.6);
+    border-top: 1px solid rgba(140, 82, 254, 0.2);
+    backdrop-filter: blur(20px);
+}
+
+.preview-modal-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.preview-icon {
+    width: 24px;
+    height: 24px;
+    color: #8C52FE;
+}
+
+.preview-modal-title h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+}
+
+.preview-modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.visit-website-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #8C52FE 0%, #B794FF 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.visit-website-btn:hover {
+    background: linear-gradient(135deg, #7a3fe8 0%, #a67fff 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(140, 82, 254, 0.4);
+}
+
+.close-preview-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close-preview-btn:hover {
+    background: rgba(255, 82, 82, 0.3);
+    border-color: rgba(255, 82, 82, 0.6);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(255, 82, 82, 0.3);
+}
+
+.close-preview-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.preview-iframe-container {
+    flex: 1;
+    position: relative;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+.preview-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+/* Modal Responsive */
+@media (max-width: 768px) {
+    .preview-modal-container {
+        height: 95vh;
+        border-radius: 15px;
+    }
+
+    .preview-modal-footer {
+        padding: 16px 20px;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .preview-modal-title h3 {
+        font-size: 16px;
+    }
+
+    .visit-website-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    .close-preview-btn {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 480px) {
+    .preview-modal-overlay {
+        padding: 10px;
+    }
+
+    .preview-modal-container {
+        height: 98vh;
+        border-radius: 10px;
+    }
+
+    .preview-modal-footer {
+        padding: 12px 16px;
+    }
+
+    .preview-modal-title h3 {
+        font-size: 14px;
+    }
+
+    .preview-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .visit-website-btn span {
+        display: none;
+    }
+
+    .visit-website-btn {
+        padding: 8px 12px;
+    }
+
+    .close-preview-btn {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
