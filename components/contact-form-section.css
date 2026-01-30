@@ -244,11 +244,53 @@
     line-height: 1.6;
 }
 
-/* Services Grid */
-.contact-form-section .services-grid {
+/* Services Categories - New Organized Layout */
+.contact-form-section .services-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form-section .service-category {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    transition: all 0.3s ease;
+}
+
+.contact-form-section .service-category:hover {
+    border-color: #cbd5e1;
+}
+
+.contact-form-section .category-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.contact-form-section .category-icon {
+    width: 20px;
+    height: 20px;
+    color: #8C52FE;
+    flex-shrink: 0;
+}
+
+.contact-form-section .category-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0F0524;
+    margin: 0;
+    letter-spacing: 0.3px;
+}
+
+.contact-form-section .category-services {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
 }
 
 .contact-form-section .service-chip {
@@ -256,13 +298,13 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 12px 16px;
-    font-size: 14px;
+    padding: 10px 14px;
+    font-size: 13px;
     font-weight: 500;
     color: #475569;
-    background: #f8fafc;
+    background: white;
     border: 2px solid #e2e8f0;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-align: left;
@@ -272,12 +314,14 @@
     background: #f1f5f9;
     border-color: #cbd5e1;
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(140, 82, 254, 0.1);
 }
 
 .contact-form-section .service-chip.active {
-    background: linear-gradient(135deg, rgba(140, 82, 254, 0.1) 0%, rgba(183, 148, 255, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(140, 82, 254, 0.15) 0%, rgba(183, 148, 255, 0.15) 100%);
     border-color: #8C52FE;
     color: #8C52FE;
+    font-weight: 600;
 }
 
 .contact-form-section .chip-checkmark {
@@ -380,14 +424,14 @@
         margin-bottom: 0;
     }
 
-    .services-grid {
+    .category-services {
         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 10px;
+        gap: 8px;
     }
 
     .service-chip {
-        padding: 10px 14px;
-        font-size: 13px;
+        padding: 10px 12px;
+        font-size: 12px;
     }
 
     .contact-form {
@@ -397,10 +441,18 @@
     .submit-button {
         padding: 14px 28px;
     }
+
+    .category-header {
+        padding-bottom: 10px;
+    }
+
+    .category-title {
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 480px) {
-    .services-grid {
+    .category-services {
         grid-template-columns: 1fr;
     }
 
@@ -408,5 +460,9 @@
     .form-textarea {
         padding: 12px 16px;
         font-size: 14px;
+    }
+
+    .service-category {
+        padding: 14px;
     }
 }

@@ -9,7 +9,11 @@ import {
     MessageSquare,
     Send,
     CheckCircle2,
-    Briefcase
+    Briefcase,
+    Palette,
+    Code,
+    Megaphone,
+    Video
 } from "lucide-react"
 import "./contact-form-section.css"
 
@@ -37,11 +41,15 @@ const translations = {
             message: 'Project Description',
             messagePlaceholder: 'Tell us about your project...'
         },
+        categories: {
+            design: 'Design',
+            webDevelopment: 'Web Development',
+            advertising: 'Advertising',
+            videoEditing: 'Video Editing'
+        },
         services: {
             identityVisual: 'Visual Identity',
             logo: 'Logo Design',
-            videoEditing: 'Video Editing',
-            websiteCreation: 'Website Creation',
             siteVitrine: 'Showcase Website',
             ecommerce: 'E-commerce Site',
             customWebsite: 'Custom Website',
@@ -49,11 +57,12 @@ const translations = {
             tiktokAds: 'TikTok Ads',
             googleAds: 'Google Ads',
             consultingSponsors: 'Ad Consulting',
+            videoEditing: 'Video Editing',
             consultation: 'General Consultation'
         },
-        submitButton: 'Send',
+        submitButton: 'Send Message',
         submitting: 'Sending...',
-        successMessage: 'Thank you! We have received your request. We will call you soon.',
+        successMessage: 'Thank you! We have received your request. We will contact you soon.',
         errorMessage: 'Oops! Something went wrong. Please try again.'
     },
     fr: {
@@ -72,11 +81,15 @@ const translations = {
             message: 'Description du Projet',
             messagePlaceholder: 'Parlez-nous de votre projet...'
         },
+        categories: {
+            design: 'Design',
+            webDevelopment: 'Développement Web',
+            advertising: 'Publicité',
+            videoEditing: 'Montage Vidéo'
+        },
         services: {
             identityVisual: 'Identité Visuelle',
             logo: 'Design de Logo',
-            videoEditing: 'Montage Vidéo',
-            websiteCreation: 'Création de Site Web',
             siteVitrine: 'Site Vitrine',
             ecommerce: 'Site E-commerce',
             customWebsite: 'Site Web Sur Mesure',
@@ -84,11 +97,12 @@ const translations = {
             tiktokAds: 'Publicités TikTok',
             googleAds: 'Publicités Google',
             consultingSponsors: 'Conseil en Publicité',
+            videoEditing: 'Montage Vidéo',
             consultation: 'Consultation Générale'
         },
-        submitButton: 'Envoyer',
+        submitButton: 'Envoyer le Message',
         submitting: 'Envoi en cours...',
-        successMessage: 'Merci ! Nous avons reçu votre demande. Nous allons vous appeler bientôt.',
+        successMessage: 'Merci ! Nous avons reçu votre demande. Nous vous contacterons bientôt.',
         errorMessage: 'Oups ! Une erreur s\'est produite. Veuillez réessayer.'
     },
     ar: {
@@ -107,11 +121,15 @@ const translations = {
             message: 'وصف المشروع',
             messagePlaceholder: 'أخبرنا عن مشروعك...'
         },
+        categories: {
+            design: 'التصميم',
+            webDevelopment: 'تطوير المواقع',
+            advertising: 'الإعلانات',
+            videoEditing: 'مونتاج الفيديو'
+        },
         services: {
             identityVisual: 'الهوية البصرية',
             logo: 'تصميم شعار',
-            videoEditing: 'مونتاج فيديو',
-            websiteCreation: 'إنشاء موقع ويب',
             siteVitrine: 'موقع تعريفي',
             ecommerce: 'موقع تجارة إلكترونية',
             customWebsite: 'موقع مخصص',
@@ -119,9 +137,10 @@ const translations = {
             tiktokAds: 'إعلانات تيك توك',
             googleAds: 'إعلانات جوجل',
             consultingSponsors: 'استشارات إعلانية',
+            videoEditing: 'مونتاج فيديو',
             consultation: 'استشارة عامة'
         },
-        submitButton: 'إرسال',
+        submitButton: 'إرسال الرسالة',
         submitting: 'جاري الإرسال...',
         successMessage: 'شكراً لك! لقد تلقينا طلبك. سنتصل بك قريباً.',
         errorMessage: 'عذراً! حدث خطأ ما. يرجى المحاولة مرة أخرى.'
@@ -143,19 +162,43 @@ export function ContactFormSection({ language, isArabic }: ContactFormSectionPro
 
     const t = translations[language]
 
-    const serviceOptions = [
-        { value: 'identityVisual', label: t.services.identityVisual },
-        { value: 'logo', label: t.services.logo },
-        { value: 'videoEditing', label: t.services.videoEditing },
-        { value: 'websiteCreation', label: t.services.websiteCreation },
-        { value: 'siteVitrine', label: t.services.siteVitrine },
-        { value: 'ecommerce', label: t.services.ecommerce },
-        { value: 'customWebsite', label: t.services.customWebsite },
-        { value: 'facebookAds', label: t.services.facebookAds },
-        { value: 'tiktokAds', label: t.services.tiktokAds },
-        { value: 'googleAds', label: t.services.googleAds },
-        { value: 'consultingSponsors', label: t.services.consultingSponsors },
-        { value: 'consultation', label: t.services.consultation }
+    // Organized service categories
+    const serviceCategories = [
+        {
+            category: 'design',
+            icon: Palette,
+            services: [
+                { value: 'identityVisual', label: t.services.identityVisual },
+                { value: 'logo', label: t.services.logo }
+            ]
+        },
+        {
+            category: 'webDevelopment',
+            icon: Code,
+            services: [
+                { value: 'siteVitrine', label: t.services.siteVitrine },
+                { value: 'ecommerce', label: t.services.ecommerce },
+                { value: 'customWebsite', label: t.services.customWebsite }
+            ]
+        },
+        {
+            category: 'advertising',
+            icon: Megaphone,
+            services: [
+                { value: 'facebookAds', label: t.services.facebookAds },
+                { value: 'tiktokAds', label: t.services.tiktokAds },
+                { value: 'googleAds', label: t.services.googleAds },
+                { value: 'consultingSponsors', label: t.services.consultingSponsors }
+            ]
+        },
+        {
+            category: 'videoEditing',
+            icon: Video,
+            services: [
+                { value: 'videoEditing', label: t.services.videoEditing },
+                { value: 'consultation', label: t.services.consultation }
+            ]
+        }
     ]
 
     const handleServiceToggle = (serviceValue: string) => {
@@ -173,13 +216,54 @@ export function ContactFormSection({ language, isArabic }: ContactFormSectionPro
         setShowError(false)
 
         try {
-            // Simuler l'envoi du formulaire
-            await new Promise(resolve => setTimeout(resolve, 2000))
+            // Get selected service labels
+            const selectedServiceLabels = formData.services.map(serviceValue => {
+                for (const category of serviceCategories) {
+                    const service = category.services.find(s => s.value === serviceValue)
+                    if (service) return service.label
+                }
+                return serviceValue
+            })
 
-            // Afficher le message de succès
+            // Prepare data for Google Sheets
+            const submissionData = {
+                name: formData.name,
+                phone: formData.phone,
+                email: formData.email,
+                services: selectedServiceLabels.join(', '),
+                message: formData.message,
+                timestamp: new Date().toISOString(),
+                language: language
+            }
+
+            // Submit to Google Sheets
+            // Replace 'YOUR_GOOGLE_APPS_SCRIPT_URL' with your actual deployment URL
+            const response = await fetch('https://script.google.com/macros/s/AKfycbyXoQrk-QeXwRi8DTaNzMs6lf66m7k_22qB9ntzjUO4LisYUi7RyasDV_RQVr414bkN/exec', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(submissionData)
+            })
+
+            // Check if the response is ok
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`)
+            }
+
+            // Parse the response
+            const result = await response.json()
+            console.log('Submission response:', result)
+
+            // Check if the result indicates success
+            if (result.result === 'error') {
+                throw new Error(result.error || 'Unknown error occurred')
+            }
+
+            // Show success message
             setShowSuccess(true)
 
-            // Réinitialiser le formulaire
+            // Reset form
             setFormData({
                 name: '',
                 phone: '',
@@ -188,11 +272,12 @@ export function ContactFormSection({ language, isArabic }: ContactFormSectionPro
                 message: ''
             })
 
-            // Masquer le message après 5 secondes
+            // Hide success message after 5 seconds
             setTimeout(() => {
                 setShowSuccess(false)
             }, 5000)
         } catch (error) {
+            console.error('Submission error:', error)
             setShowError(true)
             setTimeout(() => {
                 setShowError(false)
@@ -295,24 +380,38 @@ export function ContactFormSection({ language, isArabic }: ContactFormSectionPro
                         </div>
                     </div>
 
-                    {/* Services Multi-Select */}
+                    {/* Services Multi-Select - Organized by Categories */}
                     <div className="form-group">
                         <label className="form-label">
                             <Briefcase className="label-icon" />
                             {t.fields.service}
                         </label>
-                        <div className="services-grid">
-                            {serviceOptions.map((service) => (
-                                <button
-                                    key={service.value}
-                                    type="button"
-                                    className={`service-chip ${formData.services.includes(service.value) ? 'active' : ''}`}
-                                    onClick={() => handleServiceToggle(service.value)}
-                                >
-                                    <span className="chip-checkmark">✓</span>
-                                    {service.label}
-                                </button>
-                            ))}
+
+                        <div className="services-categories">
+                            {serviceCategories.map((category) => {
+                                const CategoryIcon = category.icon
+                                return (
+                                    <div key={category.category} className="service-category">
+                                        <div className="category-header">
+                                            <CategoryIcon className="category-icon" />
+                                            <h4 className="category-title">{t.categories[category.category as keyof typeof t.categories]}</h4>
+                                        </div>
+                                        <div className="category-services">
+                                            {category.services.map((service) => (
+                                                <button
+                                                    key={service.value}
+                                                    type="button"
+                                                    className={`service-chip ${formData.services.includes(service.value) ? 'active' : ''}`}
+                                                    onClick={() => handleServiceToggle(service.value)}
+                                                >
+                                                    <span className="chip-checkmark">✓</span>
+                                                    {service.label}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )
+                            })}
                         </div>
                     </div>
 
