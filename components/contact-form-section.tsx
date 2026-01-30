@@ -3,12 +3,22 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog"
+import { Spinner } from "@/components/ui/spinner"
+import {
     Mail,
     Phone,
     User,
     MessageSquare,
     Send,
     CheckCircle2,
+    XCircle,
     Briefcase,
     Palette,
     Code,
@@ -35,6 +45,7 @@ const translations = {
             phone: 'Phone Number',
             phonePlaceholder: '+1 234 567 8900',
             email: 'Email Address',
+            emailOptional: '(Optional)',
             emailPlaceholder: 'john@example.com',
             service: 'Service(s) Needed',
             servicePlaceholder: 'Select one or more services',
@@ -75,6 +86,7 @@ const translations = {
             phone: 'Numéro de Téléphone',
             phonePlaceholder: '+33 6 12 34 56 78',
             email: 'Adresse Email',
+            emailOptional: '(Optionnel)',
             emailPlaceholder: 'jean@exemple.fr',
             service: 'Service(s) Souhaité(s)',
             servicePlaceholder: 'Sélectionnez un ou plusieurs services',
@@ -115,6 +127,7 @@ const translations = {
             phone: 'رقم الهاتف',
             phonePlaceholder: '+966 50 123 4567',
             email: 'البريد الإلكتروني',
+            emailOptional: '(اختياري)',
             emailPlaceholder: 'ahmed@example.com',
             service: 'الخدمة (الخدمات) المطلوبة',
             servicePlaceholder: 'اختر خدمة واحدة أو أكثر',
@@ -156,8 +169,9 @@ export function ContactFormSection({ language, isArabic }: ContactFormSectionPro
         message: ''
     })
     const [isSubmitting, setIsSubmitting] = useState(false)
-    const [showSuccess, setShowSuccess] = useState(false)
-    const [showError, setShowError] = useState(false)
+    const [dialogOpen, setDialogOpen] = useState(false)
+    const [dialogType, setDialogType] = useState<'success' | 'error'>('success')
+    const [dialogMessage, setDialogMessage] = useState('')
     const [focusedField, setFocusedField] = useState<string | null>(null)
 
     const t = translations[language]
@@ -213,7 +227,6 @@ export function ContactFormSection({ language, isArabic }: ContactFormSectionPro
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setIsSubmitting(true)
-        setShowError(false)
 
         try {
             // Get selected service labels
@@ -225,63 +238,86 @@ export function ContactFormSection({ language, isArabic }: ContactFormSectionPro
                 return serviceValue
             })
 
-            // Prepare data for Google Sheets
-            const submissionData = {
+            // Submit to API route
+            console.log('Submitting form data:', {
                 name: formData.name,
-                phone: formData.phone,
                 email: formData.email,
-                services: selectedServiceLabels.join(', '),
-                message: formData.message,
-                timestamp: new Date().toISOString(),
-                language: language
-            }
+                phone: formData.phone,
+                services: selectedServiceLabels,
+                hasMessage: !!formData.message
+            })
 
-            // Submit to Google Sheets
-            // Replace 'YOUR_GOOGLE_APPS_SCRIPT_URL' with your actual deployment URL
-            const response = await fetch('https://script.google.com/macros/s/AKfycbyXoQrk-QeXwRi8DTaNzMs6lf66m7k_22qB9ntzjUO4LisYUi7RyasDV_RQVr414bkN/exec', {
+            const response = await fetch('/api/contact', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(submissionData)
+                body: JSON.stringify({
+                    name: formData.name,
+                    phone: formData.phone,
+                    email: formData.email,
+                    services: selectedServiceLabels.join(', '),
+                    message: formData.message,
+                    language: language
+                })
             })
 
-            // Check if the response is ok
+            console.log('API response status:', response.status, response.statusText)
+
+            // Check if response is OK before parsing JSON
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`)
+                let errorMessage = `Server error: ${response.status} ${response.statusText}`
+                try {
+                    const errorData = await response.json()
+                    errorMessage = errorData.error || errorMessage
+                } catch (parseError) {
+                    // If we can't parse error response, use status text
+                    const errorText = await response.text()
+                    errorMessage = errorText || errorMessage
+                }
+                throw new Error(errorMessage)
             }
 
-            // Parse the response
-            const result = await response.json()
-            console.log('Submission response:', result)
-
-            // Check if the result indicates success
-            if (result.result === 'error') {
-                throw new Error(result.error || 'Unknown error occurred')
+            // Parse JSON response
+            let result
+            try {
+                result = await response.json()
+                console.log('API response data:', result)
+            } catch (parseError) {
+                console.error('Failed to parse JSON response:', parseError)
+                throw new Error('Invalid response from server')
             }
 
-            // Show success message
-            setShowSuccess(true)
+            // Check if submission was successful
+            if (result.success === true) {
+                console.log('Form submitted successfully')
 
-            // Reset form
-            setFormData({
-                name: '',
-                phone: '',
-                email: '',
-                services: [],
-                message: ''
-            })
+                // Reset form
+                setFormData({
+                    name: '',
+                    phone: '',
+                    email: '',
+                    services: [],
+                    message: ''
+                })
 
-            // Hide success message after 5 seconds
-            setTimeout(() => {
-                setShowSuccess(false)
-            }, 5000)
+                // Show success popup
+                setDialogType('success')
+                setDialogMessage(t.successMessage)
+                setDialogOpen(true)
+            } else {
+                // API returned success: false
+                const errorMessage = result.error || t.errorMessage
+                console.error('Submission failed:', errorMessage)
+                throw new Error(errorMessage)
+            }
         } catch (error) {
             console.error('Submission error:', error)
-            setShowError(true)
-            setTimeout(() => {
-                setShowError(false)
-            }, 5000)
+            // Display error message in popup
+            const errorMessage = error instanceof Error ? error.message : t.errorMessage
+            setDialogType('error')
+            setDialogMessage(errorMessage)
+            setDialogOpen(true)
         } finally {
             setIsSubmitting(false)
         }
@@ -302,18 +338,13 @@ export function ContactFormSection({ language, isArabic }: ContactFormSectionPro
 
                 {/* Form */}
                 <form className="contact-form" onSubmit={handleSubmit}>
-                    {/* Success Message */}
-                    {showSuccess && (
-                        <div className="success-message">
-                            <CheckCircle2 className="success-icon" />
-                            <p>{t.successMessage}</p>
-                        </div>
-                    )}
-
-                    {/* Error Message */}
-                    {showError && (
-                        <div className="error-message">
-                            <p>{t.errorMessage}</p>
+                    {/* Loading Overlay */}
+                    {isSubmitting && (
+                        <div className="form-loading-overlay">
+                            <div className="loading-spinner-container">
+                                <Spinner className="loading-spinner !w-12 !h-12" />
+                                <p className="loading-text">{t.submitting}</p>
+                            </div>
                         </div>
                     )}
 
@@ -441,20 +472,42 @@ export function ContactFormSection({ language, isArabic }: ContactFormSectionPro
                         className="submit-button"
                         disabled={isSubmitting}
                     >
-                        {isSubmitting ? (
-                            <>
-                                <div className="spinner" />
-                                {t.submitting}
-                            </>
-                        ) : (
-                            <>
-                                <span>{t.submitButton}</span>
-                                <Send className="submit-icon" />
-                            </>
-                        )}
+                        <span>{t.submitButton}</span>
+                        <Send className="submit-icon" />
                     </button>
                 </form>
             </div>
+
+            {/* Success/Error Dialog Popup */}
+            <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+                <DialogContent className="dialog-content-custom" showCloseButton={true}>
+                    <DialogHeader>
+                        <DialogTitle className="dialog-title-custom" style={{ marginBottom: '8px' }}>
+                            {dialogType === 'success' ? (
+                                <div className="dialog-icon-success">
+                                    <CheckCircle2 className="dialog-icon" />
+                                </div>
+                            ) : (
+                                <div className="dialog-icon-error">
+                                    <XCircle className="dialog-icon" />
+                                </div>
+                            )}
+                        </DialogTitle>
+                        <DialogDescription className="dialog-message" style={{ color: '#1e293b', fontWeight: '500' }}>
+                            {dialogMessage}
+                        </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                        <Button
+                            onClick={() => setDialogOpen(false)}
+                            className="dialog-button"
+                            type="button"
+                        >
+                            {language === 'ar' ? 'حسناً' : language === 'fr' ? 'D\'accord' : 'OK'}
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
 
             {/* Background Decoration */}
             <div className="background-decoration">
