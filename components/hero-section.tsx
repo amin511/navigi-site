@@ -12,38 +12,43 @@ interface HeroSectionProps {
 
 const translations = {
   en: {
-    title1: 'We turn ideas',
-    title2: 'into digital reality',
-    tagline: '+ We build brands, products & experiences',
-    cta: 'Get Started',
-    videoMotion: 'Video Motion',
+    title1: 'Grow your business with our ',
+    title2: 'unique services',
+    tagline: '+ Design, websites, ads & branding',
+    cta: 'Start Now',
+
+    videoMotion: 'Video & Motion',
     webDev: 'Website Development',
-    branding: 'Branding',
-    sponsor: 'Sponsor Ads',
+    branding: 'Brand Identity',
+    sponsor: 'Sponsored Ads',
     graphicDesign: 'Graphic Design',
   },
   fr: {
-    title1: 'Nous transformons les idées',
-    title2: 'en réalité numérique',
-    tagline: '+ Nous créons des marques, produits & expériences',
+    title1: 'Développez votre projet avec nos ',
+    title2: 'services uniques',
+    tagline: '+ Design, sites web, publicité & branding',
     cta: 'Commencer',
-    videoMotion: 'Montage Vidéo',
-    webDev: 'Développement Web',
-    branding: 'Branding',
-    sponsor: 'Publicité',
-    graphicDesign: 'Design Graphique',
+
+    videoMotion: 'Vidéo & Motion',
+    webDev: 'Création de sites web',
+    branding: 'Identité visuelle',
+    sponsor: 'Publicités sponsorisées',
+    graphicDesign: 'Design graphique',
   },
+
   ar: {
-    title1: 'نحول الأفكار',
-    title2: 'إلى واقع رقمي',
-    tagline: '+ نبني العلامات التجارية والمنتجات والتجارب',
+    title1: 'طوّر مشروعك بخدماتنا',
+    title2: ' المميّزة',
+    tagline: '+ تصميم، مواقع، إعلانات، وهوية بصرية',
     cta: 'ابدأ الآن',
-    videoMotion: 'مونتاج فيديو',
-    webDev: 'تطوير المواقع',
-    branding: 'العلامة التجارية',
-    sponsor: 'إعلانات',
-    graphicDesign: 'تصميم جرافيكي',
+
+    videoMotion: 'فيديو وموشن',
+    webDev: 'تصميم مواقع',
+    branding: 'هوية بصرية',
+    sponsor: 'إشهار ممول',
+    graphicDesign: 'تصميم جرافيك',
   },
+
 };
 
 export function HeroSection({ language, isArabic }: HeroSectionProps) {
@@ -240,30 +245,41 @@ export function HeroSection({ language, isArabic }: HeroSectionProps) {
 
                 {/* Main Title */}
                 <h1 className="hero__title">
-                  <span className="hero__title-line hero__title-line--1">
-                    {t.title1.split('').map((char, i) => (
-                      <span
-                        key={i}
-                        className="hero__char"
-                        style={{ animationDelay: `${0.5 + i * 0.03}s` }}
-                      >
-                        {char === ' ' ? '\u00A0' : char}
+                  {language === 'ar' ? (
+                    <>
+                      <span className="hero__title-line hero__title-line--1">{t.title1}</span>
+                      <span className="hero__title-line hero__title-line--2">
+                        <span className="hero__title-highlight">{t.title2}</span>
                       </span>
-                    ))}
-                  </span>
-                  <span className="hero__title-line hero__title-line--2">
-                    <span className="hero__title-highlight">
-                      {t.title2.split('').map((char, i) => (
-                        <span
-                          key={i}
-                          className="hero__char hero__char--highlight"
-                          style={{ animationDelay: `${0.8 + i * 0.03}s` }}
-                        >
-                          {char === ' ' ? '\u00A0' : char}
+                    </>
+                  ) : (
+                    <>
+                      <span className="hero__title-line hero__title-line--1">
+                        {t.title1.split('').map((char, i) => (
+                          <span
+                            key={i}
+                            className="hero__char"
+                            style={{ animationDelay: `${0.5 + i * 0.03}s` }}
+                          >
+                            {char === ' ' ? '\u00A0' : char}
+                          </span>
+                        ))}
+                      </span>
+                      <span className="hero__title-line hero__title-line--2">
+                        <span className="hero__title-highlight">
+                          {t.title2.split('').map((char, i) => (
+                            <span
+                              key={i}
+                              className="hero__char hero__char--highlight"
+                              style={{ animationDelay: `${0.8 + i * 0.03}s` }}
+                            >
+                              {char === ' ' ? '\u00A0' : char}
+                            </span>
+                          ))}
                         </span>
-                      ))}
-                    </span>
-                  </span>
+                      </span>
+                    </>
+                  )}
                 </h1>
 
                 {/* CTA Button */}
